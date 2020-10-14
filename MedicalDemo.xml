@@ -64,21 +64,25 @@
             <member name="Id" type="string" stringMaxLength="32" key="true"/>
           </struct>
           <typedef name="Patient_ID_t" type="nonBasic" nonBasicTypeName="RTI::PATIENT::_patient_id_t"/>
-          <struct name="PatientPulse" baseType="RTI::PATIENT::_patient_id_t">
+          <struct name="PatientPulse">
             <member name="timestamp" type="nonBasic" nonBasicTypeName="RTI::TYPES::TimeStamp_t"/>
             <member name="readings" type="uint32" sequenceMaxLength="100"/>
+            <member name="id" type="nonBasic" nonBasicTypeName="RTI::PATIENT::_patient_id_t"/>
+            <member name="bpm" type="uint8"/>
           </struct>
-          <struct name="PatientInfo" baseType="RTI::PATIENT::_patient_id_t">
+          <struct name="PatientInfo">
             <member name="FirstName" type="string" stringMaxLength="32"/>
             <member name="LastName" type="string" stringMaxLength="32"/>
             <member name="Age" type="uint32"/>
             <member name="HeightCm" type="uint32"/>
             <member name="WeightKg" type="uint32"/>
             <member name="Sex" type="string" stringMaxLength="32"/>
+            <member name="id" type="nonBasic" nonBasicTypeName="RTI::PATIENT::_patient_id_t"/>
           </struct>
-          <struct name="PatientConfig" baseType="RTI::PATIENT::_patient_id_t">
+          <struct name="PatientConfig">
             <member name="PulseHighThreshold" type="uint32" default="200"/>
             <member name="PulseLowThreshold" type="uint32" default="0"/>
+            <member name="id" type="nonBasic" nonBasicTypeName="RTI::PATIENT::_patient_id_t"/>
           </struct>
         </module>
       </module>
