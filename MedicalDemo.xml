@@ -96,7 +96,7 @@
             <category>ALL</category>
           </logging>
           <entity_factory>
-            <autoenable_created_entities>false</autoenable_created_entities>
+            <autoenable_created_entities>true</autoenable_created_entities>
           </entity_factory>
         </participant_factory_qos>
       </qos_profile>
