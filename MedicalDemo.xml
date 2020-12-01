@@ -137,6 +137,438 @@
           </resource_limits>
         </participant_qos>
       </qos_profile>
+	    <qos_profile name="PulseWisBaseQos" base_name="Base_Participant_QoS">
+
+            <participant_qos name="PulseWisParticipant">
+                <participant_name>
+                    <name>PulseWisParticipant</name>
+                    <role_name>PulseWisParticipantRole</role_name>
+                </participant_name>  
+            </participant_qos>
+
+            <datareader_qos name="PulseTopicReaderQoS">
+                <reliability>
+                    <kind>RELIABLE_RELIABILITY_QOS</kind>
+                </reliability>
+                <history>
+                    <kind>KEEP_LAST_HISTORY_QOS</kind>
+                    <depth>100</depth>
+                </history>
+                <!-- !!!ToDo: update as required -->
+            </datareader_qos>
+
+            <datareader_qos name="PulseInfoReaderQoS">
+                <reliability>
+                    <kind>RELIABLE_RELIABILITY_QOS</kind>
+                </reliability>
+                <history>
+                    <kind>KEEP_LAST_HISTORY_QOS</kind>
+                    <depth>2</depth>
+                </history>
+                <!-- !!!ToDo: update as required -->
+            </datareader_qos>
+
+            <datawriter_qos name="PulseConfigWriterQoS">
+                <reliability>
+                    <kind>RELIABLE_RELIABILITY_QOS</kind>
+                </reliability>
+                <history>
+                    <kind>KEEP_LAST_HISTORY_QOS</kind>
+                    <depth>5</depth>
+                </history>
+            </datawriter_qos>
+
+        </qos_profile>
+	    <qos_profile name="PulseWisMonQos" base_name="PulseWisBaseQos">
+
+            <participant_qos name="PulseWisMonParticipant">
+                <property> 
+                    <value> 
+                        <element> 
+                            <name>rti.monitor.library</name> 
+                            <value>rtimonitoring</value> 
+                        </element> 
+                        <element> 
+                            <name>rti.monitor.create_function</name> 
+                            <value>RTIDefaultMonitor_create</value> 
+                        </element> 
+                    </value> 
+                </property> 
+            </participant_qos>
+        </qos_profile>
+        <qos_profile name="PiRS_LanQosProfile">
+
+            <participant_qos name="ParticipantQoS"> 
+                <participant_name>
+                    <name>PiRsLocalParticipant</name>
+                    <role_name>PiRsLocalParticipantRole</role_name>
+                </participant_name> 
+            </participant_qos> 
+
+            <datawriter_qos name="ConfigTopicWriter">
+                <publication_name>
+                    <name>PiLocalConfigWriter</name>
+                </publication_name>
+                <reliability>
+                    <kind>RELIABLE_RELIABILITY_QOS</kind>
+                </reliability>
+                <history>
+                    <kind>KEEP_LAST_HISTORY_QOS</kind>
+                    <depth>5</depth>
+                </history>
+            </datawriter_qos>
+
+            <datareader_qos name="PulseTopicReader">
+                <reliability>
+                    <kind>RELIABLE_RELIABILITY_QOS</kind>
+                </reliability>
+                <history>
+                    <kind>KEEP_LAST_HISTORY_QOS</kind>
+                    <depth>100</depth>
+                </history>
+                <!-- !!!ToDo: update as required -->
+            </datareader_qos>
+
+            <datareader_qos name="InfoTopicReader">
+                <reliability>
+                    <kind>RELIABLE_RELIABILITY_QOS</kind>
+                </reliability>
+                <history>
+                    <kind>KEEP_LAST_HISTORY_QOS</kind>
+                    <depth>2</depth>
+                </history>
+                <!-- !!!ToDo: update as required -->
+            </datareader_qos>
+
+        </qos_profile>
+<!--
+        <qos_profile name="PiRS_LanMonQosProfile" base_name="PiRS_LanQosProfile">
+            <participant_qos name="ParticipantQoS"> 
+                <property> 
+                    <value> 
+                        <element> 
+                            <name>rti.monitor.library</name> 
+                            <value>rtimonitoring</value> 
+                        </element> 
+                        <element> 
+                            <name>rti.monitor.create_function</name> 
+                            <value>RTIDefaultMonitor_create</value> 
+                        </element> 
+                    </value> 
+                </property> 
+            </participant_qos> 
+        </qos_profile>
+-->
+        <qos_profile name="PiRS_WanQosProfile">
+
+            <participant_qos name="ParticipantQoS">
+                <participant_name>
+                    <name>PiRsWanParticipant</name>
+                    <role_name>PiRsWanParticipantRole</role_name>
+                </participant_name> 
+                <discovery>
+                    <initial_peers>
+                        <element>tcpv4_wan://50.18.214.8:9900</element>
+                    </initial_peers>
+                </discovery>
+                <discovery_config>
+                    <participant_liveliness_assert_period>
+                        <sec>10</sec>
+                        <nanosec>0</nanosec>
+                    </participant_liveliness_assert_period>
+                </discovery_config>
+                <transport_builtin>
+                        <mask>MASK_NONE</mask>
+                </transport_builtin>
+                <property>
+                    <value>
+                        <element>
+                            <name>dds.transport.load_plugins</name>
+                            <value>dds.transport.TCPv4.tcp1</value>
+                        </element>
+                        <element>
+                            <name>dds.transport.TCPv4.tcp1.library</name>
+                            <value>nddstransporttcp</value>
+                        </element>
+                        <element>
+                            <name>dds.transport.TCPv4.tcp1.create_function</name>
+                            <value>NDDS_Transport_TCPv4_create</value>
+                        </element>
+                        <element>
+                            <name>dds.transport.TCPv4.tcp1.parent.classid</name>
+                            <value>NDDS_TRANSPORT_CLASSID_TCPV4_WAN</value>
+                        </element>
+                        <element>
+                            <name>dds.transport.TCPv4.tcp1.connection_liveliness.enable</name>
+                            <value>1</value>
+                        </element>
+                        <element>
+                            <name>dds.transport.TCPv4.tcp1.connection_liveliness.lease_duration</name>
+                            <value>10</value>
+                        </element>
+                        <element>
+                            <name>dds.transport.TCPv4.tcp1.connection_liveliness.assertions_per_lease_duration</name>
+                            <value>4</value>
+                        </element>
+                        <element>
+                            <name>dds.transport.TCPv4.tcp1.server_bind_port</name>
+                            <value>0</value> <!-- changed to zero since we're not supporting inbound connections -->
+                        </element>
+                        <element>
+                            <name>dds.transport.TCPv4.tcp1.disable_nagle</name>
+                            <value>1</value>
+                        </element>
+                    </value>
+                </property>
+            </participant_qos>
+
+            <datareader_qos name="ConfigTopicReader">
+                <reliability>
+                    <kind>RELIABLE_RELIABILITY_QOS</kind>
+                </reliability>
+                <history>
+                    <kind>KEEP_LAST_HISTORY_QOS</kind>
+                    <depth>5</depth>
+                </history>
+                <!-- ToDo: update as required -->
+            </datareader_qos>
+
+            <datawriter_qos name="PulseTopicWriter">
+                <publication_name>
+                    <name>PiWanPulseWriter</name>
+                </publication_name>
+                <reliability>
+                    <kind>RELIABLE_RELIABILITY_QOS</kind>
+                </reliability>
+                <history>
+                    <kind>KEEP_LAST_HISTORY_QOS</kind>
+                    <depth>100</depth>
+                </history>
+                <!-- !!!ToDo: update as required; this is going to the TCP tunnel so probably not much needed? -->
+            </datawriter_qos>
+
+            <datawriter_qos name="InfoTopicWriter">
+                <publication_name>
+                    <name>PiWanInfoWriter</name>
+                </publication_name>
+                <reliability>
+                    <kind>RELIABLE_RELIABILITY_QOS</kind>
+                </reliability>
+                <history>
+                    <kind>KEEP_LAST_HISTORY_QOS</kind>
+                    <depth>2</depth>
+                </history>
+                <!-- !!!ToDo: update as required; this is going to the TCP tunnel so probably not much needed? -->
+            </datawriter_qos>
+
+        </qos_profile>
+
+        <qos_profile name="PiRS_LanMonQosProfile" base_name="PiRS_LanQosProfile">
+            <participant_qos name="ParticipantQoS"> 
+                <property> 
+                    <value> 
+                        <element> 
+                            <name>rti.monitor.library</name> 
+                            <value>rtimonitoring</value> 
+                        </element> 
+                        <element> 
+                            <name>rti.monitor.create_function</name> 
+                            <value>RTIDefaultMonitor_create</value> 
+                        </element> 
+                    </value> 
+                </property> 
+            </participant_qos> 
+        </qos_profile>
+
+        <qos_profile name="PiRS_WanMonQosProfile" base_name="PiRS_WanQosProfile">
+            <participant_qos name="ParticipantQoS"> 
+                <property> 
+                    <value> 
+                        <element> 
+                            <name>rti.monitor.library</name> 
+                            <value>rtimonitoring</value> 
+                        </element> 
+                        <element> 
+                            <name>rti.monitor.create_function</name> 
+                            <value>RTIDefaultMonitor_create</value> 
+                        </element> 
+                    </value> 
+                </property> 
+            </participant_qos> 
+        </qos_profile>
+
+        <qos_profile name="WisRS_WanQosProfile">
+
+            <participant_qos name="ParticipantQos">
+                <participant_name>
+                    <name>AwsRsWanParticipant</name>
+                    <role_name>AwsRsWanParticipantRole</role_name>
+                </participant_name> 
+                <transport_builtin>
+                    <mask>MASK_NONE</mask>
+                </transport_builtin>
+                <property>
+                    <value>
+                        <element>
+                            <name>dds.transport.load_plugins</name>
+                            <value>dds.transport.TCPv4.tcp1</value>
+                        </element>
+                        <element>
+                            <name>dds.transport.TCPv4.tcp1.library</name>
+                            <value>nddstransporttcp</value>
+                        </element>
+                        <element>
+                            <name>dds.transport.TCPv4.tcp1.create_function</name>
+                            <value>NDDS_Transport_TCPv4_create</value>
+                        </element>
+                        <element>
+                            <name>dds.transport.TCPv4.tcp1.parent.classid</name>
+                            <value>NDDS_TRANSPORT_CLASSID_TCPV4_WAN</value>
+                        </element>
+                        <element>
+                            <name>dds.transport.TCPv4.tcp1.public_address</name>
+                            <value>192.168.1.71:9900</value>
+                        </element>
+                        <element>
+                            <name>dds.transport.TCPv4.tcp1.server_bind_port</name>
+                            <value>9900</value>
+                        </element>
+                        <element>
+                            <name>dds.transport.TCPv4.tcp1.disable_nagle</name>
+                            <value>1</value>
+                        </element>
+                    </value>
+                </property>
+            </participant_qos>
+
+            <datawriter_qos name="ConfigTopicWriter">
+                <publication_name>
+                    <name>AwsRsConfigWriter</name>
+                </publication_name>
+                <reliability>
+                    <kind>RELIABLE_RELIABILITY_QOS</kind>
+                </reliability>
+                <history>
+                    <kind>KEEP_LAST_HISTORY_QOS</kind>
+                    <depth>5</depth>
+                </history>
+            </datawriter_qos>
+
+            <datareader_qos name="PulseTopicReader">
+                <reliability>
+                    <kind>RELIABLE_RELIABILITY_QOS</kind>
+                </reliability>
+                <history>
+                    <kind>KEEP_LAST_HISTORY_QOS</kind>
+                    <depth>200</depth>
+                </history>
+                <!-- !!!ToDo: update as required; this is coming from the TCP tunnel so probably not much needed? -->
+            </datareader_qos>
+
+            <datareader_qos name="InfoTopicReader">
+                <reliability>
+                    <kind>RELIABLE_RELIABILITY_QOS</kind>
+                </reliability>
+                <history>
+                    <kind>KEEP_LAST_HISTORY_QOS</kind>
+                    <depth>2</depth>
+                </history>
+                <!-- !!!ToDo: update as required; this is coming from the TCP tunnel so probably not much needed? -->
+            </datareader_qos>
+
+        </qos_profile>
+
+        <qos_profile name="WisRS_LanQosProfile">
+
+            <participant_qos name="ParticipantQos">
+                <participant_name>
+                    <name>AwsRsLanParticipant</name>
+                    <role_name>AwsRsLanParticipantRole</role_name>
+                </participant_name> 
+            </participant_qos>
+
+            <datareader_qos name="ConfigTopicReader">
+                <reliability>
+                    <kind>RELIABLE_RELIABILITY_QOS</kind>
+                </reliability>
+                <history>
+                    <kind>KEEP_LAST_HISTORY_QOS</kind>
+                    <depth>5</depth>
+                </history>
+                <!-- !!!ToDo: update as required -->
+            </datareader_qos>
+
+            <datawriter_qos name="PulseTopicWriter">
+                <publication_name>
+                    <name>AwsRsPulseWriter</name>
+                </publication_name>
+                <reliability>
+                    <kind>RELIABLE_RELIABILITY_QOS</kind>
+                </reliability>
+                <history>
+                    <kind>KEEP_LAST_HISTORY_QOS</kind>
+                    <depth>200</depth>
+                </history>
+                <protocol>
+                    <rtps_reliable_writer>
+                        <heartbeat_period><sec>0</sec><nanosec>200000000</nanosec></heartbeat_period>
+                        <fast_heartbeat_period><sec>0</sec><nanosec>80000000</nanosec></fast_heartbeat_period>
+                        <late_joiner_heartbeat_period><sec>0</sec><nanosec>70000000</nanosec></late_joiner_heartbeat_period>
+                    </rtps_reliable_writer>
+                </protocol>
+                <!-- !!!ToDo: update as required -->
+            </datawriter_qos>
+			
+            <datawriter_qos name="InfoTopicWriter">
+                <publication_name>
+                    <name>AwsRsInfoWriter</name>
+                </publication_name>
+                <reliability>
+                    <kind>RELIABLE_RELIABILITY_QOS</kind>
+                </reliability>
+                <history>
+                    <kind>KEEP_LAST_HISTORY_QOS</kind>
+                    <depth>2</depth>
+                </history>
+                <!-- !!!ToDo: update as required -->
+            </datawriter_qos>
+
+        </qos_profile>
+
+        <qos_profile name="WisRS_LanMonQosProfile" base_name="WisRS_LanQosProfile">
+            <participant_qos name="ParticipantQos"> 
+                <property> 
+                    <value> 
+                        <element> 
+                            <name>rti.monitor.library</name> 
+                            <value>rtimonitoring</value> 
+                        </element> 
+                        <element> 
+                            <name>rti.monitor.create_function</name> 
+                            <value>RTIDefaultMonitor_create</value> 
+                        </element> 
+                    </value> 
+                </property> 
+            </participant_qos> 
+        </qos_profile>
+
+        <qos_profile name="WisRS_WanMonQosProfile" base_name="WisRS_WanQosProfile">
+            <participant_qos name="ParticipantQos">
+                <property> 
+                    <value> 
+                        <element> 
+                            <name>rti.monitor.library</name> 
+                            <value>rtimonitoring</value> 
+                        </element> 
+                        <element> 
+                            <name>rti.monitor.create_function</name> 
+                            <value>RTIDefaultMonitor_create</value> 
+                        </element> 
+                    </value> 
+                </property> 
+            </participant_qos> 
+        </qos_profile>
+
       <qos_profile name="Best_Effort_Deadline_Qos">
         <datareader_qos>
           <durability>
