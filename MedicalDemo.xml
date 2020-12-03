@@ -224,9 +224,8 @@
                 </reliability>
                 <history>
                     <kind>KEEP_LAST_HISTORY_QOS</kind>
-                    <depth>100</depth>
+                    <depth>200</depth>
                 </history>
-                <!-- !!!ToDo: update as required -->
             </datareader_qos>
 
             <datareader_qos name="InfoTopicReader">
@@ -325,7 +324,7 @@
                 </reliability>
                 <history>
                     <kind>KEEP_LAST_HISTORY_QOS</kind>
-                    <depth>100</depth>
+                    <depth>200</depth>
                 </history>
                 <!-- !!!ToDo: update as required; this is going to the TCP tunnel so probably not much needed? -->
             </datawriter_qos>
