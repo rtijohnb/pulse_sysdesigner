@@ -96,6 +96,10 @@
             <category>ALL</category>
           </logging>
           <entity_factory>
+		    <!-- Note that the following "autoenable_created_entities" setting was originally set
+			     to false in order to work around an issue using the python connector; it has been 
+				 returned to "true" which is the default setting to avoid issues with WIS and routing
+				 service, but there are situations where you might need to change this. -->
             <autoenable_created_entities>true</autoenable_created_entities>
           </entity_factory>
         </participant_factory_qos>
