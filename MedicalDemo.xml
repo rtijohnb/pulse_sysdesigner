@@ -984,6 +984,57 @@
           </batch>
         </datawriter_qos>
       </qos_profile>
+      
+      <!-- Profile used by the pulse_pi app -->     
+      <qos_profile name="pulse_pi_Profile" is_default_qos="false">
+            <!-- QoS used to configure the data writer created in the example code -->                
+            <datawriter_qos>
+                <protocol>
+                  <rtps_reliable_writer>
+                    <heartbeat_period><sec>0</sec><nanosec>600000000</nanosec></heartbeat_period>
+                    <fast_heartbeat_period><sec>0</sec><nanosec>300000000</nanosec></fast_heartbeat_period>
+                    <late_joiner_heartbeat_period><sec>0</sec><nanosec>200000000</nanosec></late_joiner_heartbeat_period>
+                  </rtps_reliable_writer>
+                </protocol>
+                <publication_name>
+                    <name>MedicalDemoDataWriter</name>
+                </publication_name>
+                <reliability>
+                    <kind>RELIABLE_RELIABILITY_QOS</kind>
+                </reliability>
+                <history>
+                    <kind>KEEP_LAST_HISTORY_QOS</kind>
+                    <depth>200</depth>
+                </history>
+            </datawriter_qos>
+
+            <!-- QoS used to configure the data reader created in the example code -->                
+            <datareader_qos>
+                <subscription_name>
+                    <name>MedicalDemoDataReader</name>
+                </subscription_name>
+                <reliability>
+                    <kind>RELIABLE_RELIABILITY_QOS</kind>
+                </reliability>
+                <history>
+                    <kind>KEEP_LAST_HISTORY_QOS</kind>
+                    <depth>200</depth>
+                </history>
+            </datareader_qos>
+            <participant_qos>
+                <!--
+                The participant name, if it is set, will be displayed in the
+                RTI tools, making it easier for you to tell one
+                application from another when you're debugging.
+                -->
+                <participant_name>
+                    <name>pulse_pi_Participant</name>
+                    <role_name>pulse_pi_Role</role_name>
+                </participant_name>
+
+            </participant_qos>
+        </qos_profile>
+      
     </qos_library>
 
     <domain_library name="MedicalDomainLibrary1">
