@@ -39,4 +39,6 @@ Use the QR Code in pulse_wis to direct your Browser to the pulse page.
 
 ## Operation
 Set the high / low alert thresholds with the up/down arrows (last change wins).
-When in Alert range, the BPM number blinks <span style="color:red">red</span>.
+When in Alert range, the BPM number blinks ```diff
+- red
+```.
