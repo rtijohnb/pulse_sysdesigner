@@ -1,0 +1,11 @@
+# Define binary file attributes.
+# - Do not treat them as text.
+*.gif     binary
+*.gz      binary
+*.ico     binary
+*.jpeg    binary  
+*.jpg     binary  
+*.sln     binary
+*.suo     binary
+*.pptx    binary
+*.vcxproj binary
