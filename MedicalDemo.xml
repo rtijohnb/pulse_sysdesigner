@@ -169,7 +169,6 @@
                     <kind>KEEP_LAST_HISTORY_QOS</kind>
                     <depth>2</depth>
                 </history>
-                <!-- !!!ToDo: update as required -->
             </datareader_qos>
 
             <datawriter_qos name="PulseConfigWriterQoS">
@@ -240,7 +239,6 @@
                     <kind>KEEP_LAST_HISTORY_QOS</kind>
                     <depth>2</depth>
                 </history>
-                <!-- !!!ToDo: update as required -->
             </datareader_qos>
 
         </qos_profile>
@@ -254,7 +252,7 @@
                 </participant_name> 
                 <discovery>
                     <initial_peers>
-                        <element>tcpv4_wan://50.18.214.8:9900</element>
+                        <element>tcpv4_wan://$(PULSE_SERVER_IP_ADDR):$(PULSE_SERVER_PORT)</element>
                     </initial_peers>
                 </discovery>
                 <discovery_config>
@@ -316,7 +314,6 @@
                     <kind>KEEP_LAST_HISTORY_QOS</kind>
                     <depth>5</depth>
                 </history>
-                <!-- ToDo: update as required -->
             </datareader_qos>
 
             <datawriter_qos name="PulseTopicWriter">
@@ -330,7 +327,6 @@
                     <kind>KEEP_LAST_HISTORY_QOS</kind>
                     <depth>200</depth>
                 </history>
-                <!-- !!!ToDo: update as required; this is going to the TCP tunnel so probably not much needed? -->
             </datawriter_qos>
 
             <datawriter_qos name="InfoTopicWriter">
@@ -344,7 +340,6 @@
                     <kind>KEEP_LAST_HISTORY_QOS</kind>
                     <depth>2</depth>
                 </history>
-                <!-- !!!ToDo: update as required; this is going to the TCP tunnel so probably not much needed? -->
             </datawriter_qos>
 
         </qos_profile>
@@ -413,11 +408,11 @@
                         </element>
                         <element>
                             <name>dds.transport.TCPv4.tcp1.public_address</name>
-                            <value>50.18.214.8:9900</value>
+                            <value>$(PULSE_SERVER_IP_ADDR):$(PULSE_SERVER_PORT)</value>
                         </element>
                         <element>
                             <name>dds.transport.TCPv4.tcp1.server_bind_port</name>
-                            <value>9900</value>
+                            <value>$(PULSE_SERVER_PORT)</value>
                         </element>
                         <element>
                             <name>dds.transport.TCPv4.tcp1.disable_nagle</name>
@@ -448,7 +443,6 @@
                     <kind>KEEP_LAST_HISTORY_QOS</kind>
                     <depth>200</depth>
                 </history>
-                <!-- !!!ToDo: update as required; this is coming from the TCP tunnel so probably not much needed? -->
             </datareader_qos>
 
             <datareader_qos name="InfoTopicReader">
@@ -459,7 +453,6 @@
                     <kind>KEEP_LAST_HISTORY_QOS</kind>
                     <depth>2</depth>
                 </history>
-                <!-- !!!ToDo: update as required; this is coming from the TCP tunnel so probably not much needed? -->
             </datareader_qos>
 
         </qos_profile>
@@ -481,7 +474,6 @@
                     <kind>KEEP_LAST_HISTORY_QOS</kind>
                     <depth>5</depth>
                 </history>
-                <!-- !!!ToDo: update as required -->
             </datareader_qos>
 
             <datawriter_qos name="PulseTopicWriter">
@@ -516,7 +508,6 @@
                     <kind>KEEP_LAST_HISTORY_QOS</kind>
                     <depth>2</depth>
                 </history>
-                <!-- !!!ToDo: update as required -->
             </datawriter_qos>
 
         </qos_profile>
