@@ -907,6 +907,7 @@
           <lifespan>
             <duration>
               <sec>DURATION_INFINITE_SEC</sec>
+              <nanosec>DURATION_INFINITE_NSEC</nanosec>
             </duration>
           </lifespan>
           <ownership>
